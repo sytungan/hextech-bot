@@ -1,5 +1,5 @@
 {
-  "name": "hextech",
+  "name": "hextech-bot",
   "version": "1.0.0",
   "description": "Powerful discord bot",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:sytungan/hextech.git"
+    "url": "git@github.com:sytungan/hextech-bot.git"
   },
   "author": "Sy Tung An",
   "license": "ISC",
