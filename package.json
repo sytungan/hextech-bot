@@ -1,0 +1,21 @@
+{
+  "name": "hextech",
+  "version": "1.0.0",
+  "description": "Powerful discord bot",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sytungan/hextech.git"
+  },
+  "author": "Sy Tung An",
+  "license": "ISC",
+  "devDependencies": {
+
+  },
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
+}
