@@ -1,7 +1,15 @@
 const { Message } = require("discord.js");
 const { Client } = require("discord.js");
-const play = require('play-dl');
-const { joinVoiceChannel, getVoiceConnection, createAudioPlayer, createAudioResource, NoSubscriberBehavior, StreamType } = require("@discordjs/voice");
+const play = require("play-dl");
+const { StreamDownloader } = require("playdl-music-extractor");
+const {
+    joinVoiceChannel,
+    getVoiceConnection,
+    createAudioPlayer,
+    createAudioResource,
+    NoSubscriberBehavior,
+    StreamType,
+} = require("@discordjs/voice");
 
 /**
  * @param {Message} message The date
@@ -17,19 +25,32 @@ async function execute(message) {
         adapterCreator: channel.guild.voiceAdapterCreator,
     });
 
-		const stream = await play.stream(args[0])
-		const audioPlayer = createAudioPlayer({
-			behaviors: {
-				noSubscriber: NoSubscriberBehavior.Pause,
-			},
-		});
+    // const stream = await play.stream(args[0], {
+    //     discordPlayerCompatibility: true,
+    // });
+    const audioPlayer = createAudioPlayer({
+        behaviors: {
+            noSubscriber: NoSubscriberBehavior.Pause,
+        },
+    });
 
-		const resource = createAudioResource(stream.stream, {inputType: stream.type});
+    const Data = await StreamDownloader('Despacito', {
+        Limit: 1,
+        Quality: 'highest',
+        Cookies: undefined, //YT Cookies Headers in String form
+        UserAgents: undefined, //[{"Mozilla/5.0 (Windows NT 10.0; Win64; x64) ....."}] Format(UserAgents)
+        IgnoreError: true,
+      })
 
-		audioPlayer.play(resource)
+      if(Data.error) throw Data.error;
+
+    const resource = createAudioResource(Data.tracks[0].stream, {
+        inputType: Data.tracks[0].stream_type,
+    });
+
+    audioPlayer.play(resource);
 
     const subscription = connection.subscribe(audioPlayer);
-	
 
     if (!channel)
         return message.channel.send(
