@@ -19,6 +19,15 @@ const commands = [
         .addStringOption((option) =>
             option.setName("query").setDescription("Search").setRequired(true)
         ),
+    new SlashCommandBuilder()
+        .setName("build")
+        .setDescription("Start build app")
+        .addStringOption((option) =>
+            option
+                .setName("branch")
+                .setDescription("Branch name")
+                .setRequired(true)
+        ),
 ].map((command) => command.toJSON());
 
 const rest = new REST({ version: "9" }).setToken(HEXTECH_TOKEN);
