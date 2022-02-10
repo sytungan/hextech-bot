@@ -25,27 +25,31 @@ async function execute(message) {
         adapterCreator: channel.guild.voiceAdapterCreator,
     });
 
-    // const stream = await play.stream(args[0], {
-    //     discordPlayerCompatibility: true,
-    // });
+    const stream = await play.stream(args[0], {
+        discordPlayerCompatibility: true,
+    });
     const audioPlayer = createAudioPlayer({
         behaviors: {
             noSubscriber: NoSubscriberBehavior.Pause,
         },
     });
 
-    const Data = await StreamDownloader('Despacito', {
-        Limit: 1,
-        Quality: 'highest',
-        Cookies: undefined, //YT Cookies Headers in String form
-        UserAgents: undefined, //[{"Mozilla/5.0 (Windows NT 10.0; Win64; x64) ....."}] Format(UserAgents)
-        IgnoreError: true,
-      })
+    // const Data = await StreamDownloader('Despacito', {
+    //     Limit: 1,
+    //     Quality: 'highest',
+    //     Cookies: undefined, //YT Cookies Headers in String form
+    //     UserAgents: undefined, //[{"Mozilla/5.0 (Windows NT 10.0; Win64; x64) ....."}] Format(UserAgents)
+    //     IgnoreError: true,
+    //   })
 
-      if(Data.error) throw Data.error;
+    //   if(Data.error) throw Data.error;
 
-    const resource = createAudioResource(Data.tracks[0].stream, {
-        inputType: Data.tracks[0].stream_type,
+    // const resource = createAudioResource(Data.tracks[0].stream, {
+    //     inputType: Data.tracks[0].stream_type,
+    // });
+
+    const resource = createAudioResource(stream.stream, {
+        inputType: stream.type,
     });
 
     audioPlayer.play(resource);
