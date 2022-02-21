@@ -5,15 +5,6 @@ const { CLIENT_ID, HEXTECH_TOKEN } = require("../environments");
 
 const commands = [
     new SlashCommandBuilder()
-        .setName("ok")
-        .setDescription("Replies with pong!"),
-    new SlashCommandBuilder()
-        .setName("server")
-        .setDescription("Replies with server info!"),
-    new SlashCommandBuilder()
-        .setName("user")
-        .setDescription("Replies with user info!"),
-    new SlashCommandBuilder()
         .setName("play")
         .setDescription("play a song")
         .addStringOption((option) =>
@@ -28,6 +19,9 @@ const commands = [
                 .setDescription("Branch name")
                 .setRequired(true)
         ),
+    new SlashCommandBuilder()
+        .setName("gacha")
+        .setDescription("Open a random hextech")
 ].map((command) => command.toJSON());
 
 const rest = new REST({ version: "9" }).setToken(HEXTECH_TOKEN);
