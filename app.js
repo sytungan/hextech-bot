@@ -39,7 +39,11 @@ player.on("botDisconnect", (queue) =>
 );
 
 player.on("error", (queue, error) =>
-    queue.metadata.channel.send(`😓 | Error!`)
+    queue.metadata.channel.send(`😓 | ${error.message}!`)
+);
+
+player.on("connectionError", (queue, error) =>
+    queue.metadata.channel.send(`🐞 | ${error.message}!`)
 );
 
 client.on("ready", () => {
