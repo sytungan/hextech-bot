@@ -292,6 +292,39 @@ client.on("messageCreate", async (message) => {
             queue.stop()
         }
     }
+    if (
+        message.content.includes("volume:") ||
+        message.content.includes("am luong:") ||
+        message.content.includes("bot sound:")
+    ) {
+        const queue = player.createQueue(message.guild, {
+            metadata: {
+                channel: message.channel,
+            },
+        });
+        const volume = parseInt(message.content.split(":")[1]);
+        
+        if (queue.connection) {
+            message.react("🌊")
+            queue.setVolume(volume)
+        }
+    }
+    if (
+        message.content.includes("amluong") ||
+        message.content.includes("showvolume") ||
+        message.content.includes("hienamluong")
+    ) {
+        const queue = player.createQueue(message.guild, {
+            metadata: {
+                channel: message.channel,
+            },
+        });
+        
+        if (queue.connection) {
+            message.react("💿")
+            message.reply({content: queue.volume.toString()})
+        }
+    }
 });
 
 client.login(HEXTECH_TOKEN);
