@@ -277,9 +277,10 @@ client.on("messageCreate", async (message) => {
         }
     }
     if (
-        message.content.includes("out") ||
+        message.content.includes("outdibot") ||
         message.content.includes("di di bot") ||
-        message.content.includes("bot cut")
+        message.content.includes("bot cut") ||
+        message.content.includes("botout")
     ) {
         const queue = player.createQueue(message.guild, {
             metadata: {
