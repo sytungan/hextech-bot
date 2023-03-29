@@ -1,2 +1,2 @@
 # hextech-bot
-A discord bot to play music and build private CI
+A discord bot to play music and some useful tools
